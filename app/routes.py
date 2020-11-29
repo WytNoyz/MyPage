@@ -8,7 +8,7 @@ from datetime import datetime
 def index():
     serv_time = datetime.now().strftime("%F %H:%M:%S")
     return {
-        "ok": True
+        "ok": True,
         "version": "1.0.0",
         "server_time": serv_time
     }
@@ -58,9 +58,10 @@ def sample1():
     return "<h1>Hello, World!</h1>"
 
 
-@app.route('/user/<name>')
-def user(name):
-    return "<h1>Hello, %s!</h1>" % name
+@app.route('/aboutme')
+def user():
+    mydictionary = {"first_name": "Nate", "last_name": "Newport", "hobby": "Growing"}
+    return mydictionary
 
 
 @app.route('/square/<int:number>')
@@ -69,7 +70,7 @@ def square(number):
             % (number, number**2))
 
 
-@app.route('agent')
+@app.route('/agent')
 def agent():
     user_agent = request.headers.get("User-Agent")
     return "<p>Your user agent is %s</p>" % user_agent

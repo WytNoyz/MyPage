@@ -78,6 +78,5 @@ def delete(prod_id):
     query = "DELETE FROM product WHERE id=%s" % prod_id
     cursor = get_db()
     cursor.execute(query, ())
-    cursor.commit(
-        return True
-    )
+    cursor.commit()
+    return True
