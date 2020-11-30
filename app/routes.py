@@ -15,6 +15,13 @@ def get_db():
         db = g._database = sqlite3.connect(DATABASE)
 
 
+def return_users():
+    cursor = get_db().execute("select * from user", ())
+    results - cursor.fetchall()
+    cursor.close()
+    return results
+
+
 @app.teardown_appcontext
 def close_connection(exception):
     db = getattr(g, "_database", None)
