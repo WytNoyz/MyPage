@@ -5,7 +5,7 @@
 from flask import g
 import sqlite3
 
-DATABASE="catalog_db"
+DATABASE = "catalog_db"
 
 
 def get_db():
@@ -23,6 +23,8 @@ def output_formatter(results: tuple):
         res_dict["name"] = result[1]
         res_dict["price"] = result[2]
         res_dict["category"] = result[3]
+        res_dict["description"] = result[4]
+        res_dict["active"] = result[5]
         out["body"].append(res_dict)
     return out
 
@@ -48,9 +50,9 @@ def read(prod_id):
 
 def update(prod_id, fields: dict):
     field_string = ", ".join(
-                    "%s=\"%s\"" % (key, val)
-                        for key, val
-                        in fields.items())
+        "%s=\"%s\"" % (key, val)
+        for key, val
+        in fields.items())
     query = """
             UPDATE product
             SET %s
